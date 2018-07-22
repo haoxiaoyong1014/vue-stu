@@ -15,8 +15,14 @@ export default {
       articles: []
     }
   }
-
 }
+/* new Vue({
+    el: '#secondcomponent',
+    data: {
+      author: '微信号：hxywan1014'
+    }
+  }) */
+
 </script>
 
 <style scoped>

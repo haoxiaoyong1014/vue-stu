@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{msg}}</h1>
+    {{isOK ? '确定':'取消'}}
+    <img src="./assets/logo.png"><!-- v-bind:src="imgUrl"-->
+    <h1 id="h1">{{msg}}</h1>
+    {{isfalse ? '好吗':'好的'}}
     <HelloWorld></HelloWorld>
     <!--<secondcomponent></secondcomponent>-->
     <ul>
@@ -22,6 +24,7 @@ import HelloWorld from './components/HelloWorld.vue'
 import secondcomponent from './components/secondcomponent.vue'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 const First = {template: '<div><h2>我是第一页的子页面</h2></div>'}
 
 Vue.use(VueRouter)
@@ -39,17 +42,25 @@ const router = new VueRouter({
       component: secondcomponent
     }
   ]
-});
+})
 
 export default {
   data () {
     return {
-      msg: 'Hello Vue'
+      msg: 'Hello Vue',
+      isfalse: true
     }
   },
   components: {HelloWorld, secondcomponent},
   router
 }
+new Vue({
+  el: '#app',
+  data: {
+    isOK: false
+    /* imgUrl: 'https://avatars0.githubusercontent.com/u/32768756?s=460&v=4' */
+  }
+})
 
 </script>
 
