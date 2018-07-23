@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <img :src="imgUrl">
+    <Third></Third>
     <h1 id="h1">{{msg}}</h1>
     {{isfalse ? '好吗':'好的'}}
     <HelloWorld></HelloWorld>
@@ -21,9 +22,10 @@
 
 import HelloWorld from '@/components/HelloWorld.vue'
 import secondcomponent from '@/components/secondcomponent.vue'
+import Third from './components/Third'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+Vue.use(VueRouter)
 const First = {template: '<div><h2>我是第一页的子页面</h2></div>'}
 
 const router = new VueRouter({
@@ -40,10 +42,6 @@ const router = new VueRouter({
     }
   ]
 })
-//
-
-Vue.use(VueRouter)
-
 export default {
   data () {
     return {
@@ -53,7 +51,7 @@ export default {
       text2: '123,4567'
     }
   },
-  components: {HelloWorld, secondcomponent},
+  components: {Third, HelloWorld, secondcomponent},
   router
 }
 
