@@ -1,4 +1,4 @@
-<template>
+<template xmlns:>
   <div id="secondcomponent">
     <h1>I am another page</h1>
     <a v-bind:href="author">博客链接教程</a>
@@ -10,6 +10,20 @@
     <p v-if="show">这是一段文本</p>
     <button v-on:click="handleColse">点击隐藏上面的一段文本</button>
     <button :class="clazz">点我改变class属性</button>
+    <!--<ul>
+    <li v-for ="(article,index) in articles" :key="index">
+      {{article.title}}`
+    </li>
+  </ul>-->
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <h1 style="line-height: 36px; color: #20A0FF">豆瓣电影排行榜</h1>
+      </div>
+      <div v-for="(article,index) in articles" :key="index" class="text item">
+        {{article.title}}
+
+      </div>
+    </el-card>
   </div>
 </template>
 
@@ -77,9 +91,9 @@ export default {
       }
     },
     /* 示例中的样式btn会始终应用，当数据size不为空的时候，
-    * 会应用样式前缀btn- 后加上size的值，当数据disabled为真时
-    * 会应用样式btn-disabled,所以结果是：<button class="btn btn-large btn-disabled">点我改变class属性</button>
-    * */
+        * 会应用样式前缀btn- 后加上size的值，当数据disabled为真时
+        * 会应用样式btn-disabled,所以结果是：<button class="btn btn-large btn-disabled">点我改变class属性</button>
+        * */
     clazz: function () {
       return [
         'btn',
@@ -104,6 +118,17 @@ export default {
   mounted: function () {
     this.init('在初始化的时候调用')
     this.text2 = this.$route.params.text2
+    this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
+      headers: {},
+      emulateJSON: true
+    }).then(function (response) {
+      /* 这里是处理正确的回调 */
+      this.articles = response.data.subjects
+    }, function (response) {
+      /* 这里处理错误回调 */
+      console.log(response)
+    }
+    )
   }
 }
 </script>
@@ -114,5 +139,11 @@ export default {
     width: auto;
     height: auto;
   }
+
+  /*.text {
+    [] {
+    display: none;
+    }
+  }*/
 
 </style>
