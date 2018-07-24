@@ -1,4 +1,4 @@
-<template xmlns:>
+<template>
   <div id="secondcomponent">
     <h1>I am another page</h1>
     <a v-bind:href="author">博客链接教程</a>
@@ -118,6 +118,8 @@ export default {
   mounted: function () {
     this.init('在初始化的时候调用')
     this.text2 = this.$route.params.text2
+  },
+  created: function () {
     this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
       headers: {},
       emulateJSON: true
@@ -139,11 +141,5 @@ export default {
     width: auto;
     height: auto;
   }
-
-  /*.text {
-    [] {
-    display: none;
-    }
-  }*/
 
 </style>

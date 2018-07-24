@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <img :src="imgUrl">
-    <Third></Third>
     <h1 id="h1">{{msg}}</h1>
     {{isfalse ? '好吗':'好的'}}
     <HelloWorld></HelloWorld>
@@ -12,6 +11,9 @@
       </li>
       <li>
         <router-link :to="{path: '/second/' + text2 }" >点我跳转到第二页</router-link>
+      </li>
+      <li>
+        <router-link :to="{path: '/third'}" >点我跳转到第三页</router-link>
       </li>
     </ul>
     <router-view/>
@@ -41,6 +43,10 @@ const router = new VueRouter({
     {
       path: '/second/:text2',
       component: secondcomponent
+    },
+    {
+      path: '/third',
+      component: Third
     }
   ]
 })
