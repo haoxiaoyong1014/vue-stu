@@ -15,9 +15,9 @@
       <li>
         <router-link :to="{path: '/third'}" >点我跳转到第三页</router-link>
       </li>
-      <!--<li>
-        <router-link :to="{path: '/cart'}">点我调转到购物车页面</router-link>
-      </li>-->
+      <li>
+        <router-link :to="{path: '/cart'}">点我跳转到第四页</router-link>
+      </li>
     </ul>
     <router-view/>
   </div>
@@ -27,7 +27,7 @@
 
 import HelloWorld from '@/components/HelloWorld.vue'
 import secondcomponent from '@/components/secondcomponent.vue'
-/* import cart from '@/cart.html' */
+import cart from './components/cart.vue'
 import Third from './components/Third'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -51,11 +51,11 @@ const router = new VueRouter({
     {
       path: '/third',
       component: Third
-    }
-    /* {
+    },
+    {
       path: '/cart',
       component: cart
-    } */
+    }
   ]
 })
 export default {
@@ -67,10 +67,17 @@ export default {
       text2: '123,4567'
     }
   },
-  components: {Third, HelloWorld, secondcomponent},
+  components: {Third, HelloWorld, secondcomponent, cart},
   router
 }
-
+/* Vue.component('my-com', {
+  props: ['message'],
+  template: '<div>{{message}}</div>'
+}), */
+Vue.component('my-component', {
+  props: ['message'],
+  template: '<div>{{message}}</div>'
+})
 </script>
 
 <style>

@@ -1,5 +1,6 @@
 <template>
   <div id="secondcomponent">
+    <cart :myName= "name"  :my-age= "age"></cart> <!--组件之间的复用-->
     <h1>I am another page</h1>
     <a v-bind:href="author">博客链接教程</a>
     总价: {{prices}} 折后价: {{ text2 }}
@@ -28,8 +29,9 @@
 </template>
 
 <script>
+import cart from './cart.vue'
 export default {
-  name: 'secondcomponent',
+  /* name: 'secondcomponent', */
   data () {
     return {
       author: 'http://www.runoob.com/w3cnote/vue2-start-coding.html',
@@ -62,15 +64,12 @@ export default {
       isError: true,
       error: null,
       size: 'large',
-      disabled: true
+      disabled: true,
+      name: 'haoxy',
+      age: 23
     }
   },
-  // props: {
-  //   text: {
-  //     type: String,
-  //     default: '12345'
-  //   }
-  // },
+  components: {cart},
   /* 计算属性 */
   computed: {
     prices: function () {
