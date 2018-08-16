@@ -1,5 +1,17 @@
 <template>
   <div id="secondcomponent">
+    <ul>
+      <li>
+        <label>姓名</label>
+        <span>{{name}}</span>
+        <input type="text" v-model="name"/>
+      </li>
+      <li>
+        <label>年龄</label>
+        <span>{{age}}</span>
+        <input type="text" v-model="age"/>
+      </li>
+    </ul>
     <cart :myName= "name"  :my-age= "age"></cart> <!--组件之间的复用-->
     <h1>I am another page</h1>
     <a v-bind:href="author">博客链接教程</a>
