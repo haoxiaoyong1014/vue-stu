@@ -78,6 +78,50 @@ Vue.component('my-component', {
   props: ['message'],
   template: '<div>{{message}}</div>'
 })
+Vue.component('my-component2', {
+  template: '<div>' +
+  '<el-button @click="handleIncrease">+1</el-button>' +
+  '<el-button @click="handleReduce">-1</el-button>' +
+  '</div>',
+  data: function () {
+    return {
+      counter: 0
+    }
+  },
+  methods: {
+    handleIncrease: function () {
+      this.counter++
+      this.$emit('increase', this.counter)
+    },
+    handleReduce: function () {
+      this.counter--
+      this.$emit('reduce', this.counter)
+    }
+  }
+})
+Vue.component('my-component3', {
+  template: '<el-button @click="handleClick">+1</el-button>',
+  data () {
+    return {
+      counter2: 0
+    }
+  },
+  methods: {
+    handleClick: function () {
+      this.counter2++
+      this.$emit('input', this.counter2)
+    }
+  }
+})
+Vue.component('my-component4', {
+  props: ['value'],
+  template: '<input :value="value" @input="updateValue"/>',
+  methods: {
+    updateValue (event) {
+      this.$emit('input', event.target.value)
+    }
+  }
+})
 </script>
 
 <style>
